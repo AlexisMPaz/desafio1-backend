@@ -8,16 +8,19 @@ class ProductManager {
     }
 
     addProduct(newProduct) {
-        if (newProduct.title.length > 0 && newProduct.description.length > 0 && toString(newProduct.price).length > 0 && newProduct.thumbnail.length > 0 && newProduct.code.length > 0 && toString(newProduct.stock).length > 0) {
+        const newProductValues = Object.values(newProduct);
+
+        if (newProductValues.includes("") || newProductValues.includes(null)) {
+            console.error("Error1: No se ha podido agregar el producto ya que posee campos incompletos")
+
+        } else {
             const product = this.products.find(prod => prod.code == newProduct.code);
+
             if (!product) {
                 this.products.push(newProduct);
             } else {
                 console.error("Error2: El producto esta repetido");
             }
-
-        } else {
-            console.error("Error1: No se ha podido agregar el producto ya que posee campos incompletos")
         }
     }
 
@@ -73,15 +76,15 @@ manager1.addProduct(product2);
 manager1.addProduct(product3);
 
 //Productos no validos para cargar (Errores por consola)
-const emptyProduct = new Product("", "", "", "", "", ""); // Producto no valido por tener campos vacios
+const emptyProduct = new Product("", "", "", "", "", ""); // Error 1 - Producto no valido por tener campos vacios
 manager1.addProduct(emptyProduct);
 
-const cloneProduct = {...product1} //Producto no valido por tener el mismo code que el product1
+const cloneProduct = { ...product1 } //Error 2 - Producto no valido por tener el mismo code que el product1
 manager1.addProduct(cloneProduct);
 
 console.log(manager1.getProducts()); //Devuelve el array con los 3 productos cargados
 
 //Ahora probemos el getProductByID
 
-console.log(manager1.getProductByID(4)); // Producto no encontrado (error por consola)
+console.log(manager1.getProductByID(4)); // Producto no encontrado (error 3 por consola)
 console.log(manager1.getProductByID(2)); // Producto encontrado (product2 por consola)
