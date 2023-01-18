@@ -15,7 +15,6 @@ class ProductManager {
 
         } else {
             const product = this.products.find(prod => prod.code === newProduct.code);
-
             if (!product) {
                 this.products.push(newProduct);
             } else {
@@ -35,7 +34,6 @@ class ProductManager {
         } else {
             return "Error3: Producto no encontrado";
         }
-
     }
 }
 
