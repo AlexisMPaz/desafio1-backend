@@ -14,7 +14,7 @@ class ProductManager {
             console.error("Error1: No se ha podido agregar el producto ya que posee campos incompletos")
 
         } else {
-            const product = this.products.find(prod => prod.code == newProduct.code);
+            const product = this.products.find(prod => prod.code === newProduct.code);
 
             if (!product) {
                 this.products.push(newProduct);
@@ -29,7 +29,7 @@ class ProductManager {
     }
 
     getProductByID(idProduct) {
-        const product = this.products.find(prod => prod.id == idProduct);
+        const product = this.products.find(prod => prod.id === idProduct);
         if (product) {
             return product;
         } else {
