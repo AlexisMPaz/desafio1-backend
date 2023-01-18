@@ -16,7 +16,8 @@ class ProductManager {
         } else {
             const product = this.products.find(prod => prod.code === newProduct.code);
             if (!product) {
-                this.products.push(newProduct);
+                const newID = ProductManager.idGenerator()
+                this.products.push({...newProduct, id: newID});
             } else {
                 console.error("Error2: El producto esta repetido");
             }
@@ -26,7 +27,6 @@ class ProductManager {
     getProducts() {
         return this.products;
     }
-
     getProductByID(idProduct) {
         const product = this.products.find(prod => prod.id === idProduct);
         if (product) {
@@ -34,6 +34,16 @@ class ProductManager {
         } else {
             return "Error3: Producto no encontrado";
         }
+    }
+
+     //Metodo estatico para generar ID al cargar producto
+    static idGenerator() {
+        if (!this.generatedID) {
+            this.generatedID = 1;
+        } else {
+            this.generatedID++;
+        }
+        return this.generatedID;
     }
 }
 
@@ -45,16 +55,6 @@ class Product {
         this.thumbnail = thumbnail
         this.code = code
         this.stock = stock
-        this.id = Product.idGenerator()
-    }
-
-    static idGenerator() {
-        if (!this.generatedID) {
-            this.generatedID = 1;
-        } else {
-            this.generatedID++;
-        }
-        return this.generatedID;
     }
 }
 
