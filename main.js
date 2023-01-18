@@ -1,9 +1,6 @@
 // Clases para Manager y Producto
 class ProductManager {
-    constructor(nombre, apellido, edad) {
-        this.nombre = nombre
-        this.apellido = apellido
-        this.edad = edad
+    constructor() {
         this.products = []
     }
 
@@ -60,7 +57,7 @@ class Product {
 
 // Creacion del Manager y los productos
 
-const manager1 = new ProductManager("Alexis", "Paz", 28);
+const manager1 = new ProductManager();
 
 const product1 = new Product("Producto prueba", "Este es un producto de prueba", 200, "Sin Imagen", "abc123", 25);
 const product2 = new Product("Producto prueba 2", "Este es el segundo producto de prueba", 500, "Sin Imagen", "abc456", 25);
@@ -68,7 +65,7 @@ const product3 = new Product("Producto prueba 3", "Este es el tercer producto de
 
 console.log(manager1.getProducts()); //Devuelve el Array Vacio
 
-// Cargo los productos al manager
+// Cargo los productos al manager (Se les genera un ID)
 manager1.addProduct(product1);
 manager1.addProduct(product2);
 manager1.addProduct(product3);
