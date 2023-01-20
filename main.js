@@ -35,11 +35,7 @@ class ProductManager {
 
      //Metodo estatico para generar ID al cargar producto
     static idGenerator() {
-        if (!this.generatedID) {
-            this.generatedID = 1;
-        } else {
-            this.generatedID++;
-        }
+        this.generatedID ? this.generatedID++ : (this.generatedID = 1);
         return this.generatedID;
     }
 }
